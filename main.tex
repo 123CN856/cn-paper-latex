@@ -1,0 +1,162 @@
+%% ================================================================
+%%  中文论文 LaTeX 模板（XeLaTeX + ctex）
+%%  适合：国内期刊论文 / 学位论文 / 研究报告
+%%  编译：xelatex main.tex   （跑两遍）
+%% ================================================================
+\documentclass[UTF8,a4paper,11pt]{ctexart}
+
+\usepackage{geometry}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{ragged2e}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue!50!black,citecolor=black}
+
+%% 行距
+\linespread{1.45}
+%% 首行缩进两字
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.3em}
+
+%% ⭐ 中文章节编号：一二三 / （一）（二）
+%%    注意：不能用 \ctexset{section/number=...}，会被 titlesec 覆盖
+\titleformat{\section}{\Large\heiti}{\chinese{section}、}{0.3em}{}
+\titleformat{\subsection}{\large\heiti}{（\chinese{subsection}）}{0.2em}{}
+\titlespacing{\section}{0pt}{1.5em}{0.8em}
+\titlespacing{\subsection}{0pt}{1em}{0.5em}
+
+%% 页脚页码
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[C]{\small\thepage}
+
+%% 摘要环境
+\newenvironment{cnabstract}{%
+  \begin{center}\small\heiti 摘\quad 要\end{center}
+  \begin{quote}\small\setstretch{1.25}%
+}{%
+  \end{quote}
+}
+
+%% 关键词
+\newcommand{\keywords}[1]{%
+  \par\vspace{0.6em}\noindent{\small\heiti 关键词：}#1\par\vspace{1.2em}%
+}
+
+%% 强调（中文论文里加粗即可，不用斜体）
+\newcommand{\kw}[1]{\textbf{#1}}
+
+
+\begin{document}
+
+%% ---------------- 标题区 ----------------
+\begin{center}
+  {\LARGE\heiti 论文标题写这里}\\[0.5em]
+  {\large\heiti ——副标题写这里}\\[1.2em]
+  {\normalsize 作者姓名}\\[0.4em]
+  {\small （作者单位）}\\[0.3em]
+  {\small 2026 年 11 月}
+\end{center}
+
+\vspace{1em}
+
+%% ---------------- 摘要 ----------------
+\begin{cnabstract}
+摘要正文写这里。建议三到五段：第一段提出问题，第二段说明方法，
+第三段给出结论，第四段说明贡献与限定。
+
+注意中文论文的摘要通常是**报道性摘要**，要说清"做了什么、怎么做的、
+得到什么结果"，而不是只介绍背景。
+\end{cnabstract}
+
+\keywords{关键词一；关键词二；关键词三；关键词四}
+
+%% ---------------- 正文 ----------------
+\section{引言}
+
+正文从这里开始。首行自动缩进两字。
+
+这是一个段落示例。中文排版需要注意标点挤压、行首行尾禁则、以及中西文混排时的间距，
+xeCJK/ctex 已经处理好了，不需要手动加空格。
+
+\subsection{研究背景}
+
+小节用「（一）（二）」编号。
+
+\subsection{本文贡献}
+
+\begin{enumerate}[leftmargin=2em,itemsep=0.3em]
+  \item 贡献一；
+  \item 贡献二；
+  \item 贡献三。
+\end{enumerate}
+
+\section{方法}
+
+\subsection{公式}
+
+行内公式：$E = mc^2$。
+
+独立公式：
+\begin{equation}
+\cos\theta = \frac{\mathbf{a} \cdot \mathbf{b}}{\lVert \mathbf{a}\rVert \, \lVert \mathbf{b}\rVert}
+\end{equation}
+
+\subsection{表格}
+
+中文论文习惯用三线表：
+
+\begin{center}
+\begin{tabular}{@{}p{3.2cm}p{4.6cm}p{4.6cm}@{}}
+\toprule
+ & 对照组 & 实验组 \\
+\midrule
+指标一 & 数值 & 数值 \\
+指标二 & 数值 & 数值 \\
+指标三 & 数值 & 数值 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{列表}
+
+\begin{itemize}[leftmargin=2em,itemsep=0.2em]
+  \item 要点一；
+  \item 要点二。
+\end{itemize}
+
+\section{结论}
+
+结论写这里。不要简单复述摘要，要指出：
+\begin{enumerate}[leftmargin=2em,itemsep=0.3em]
+  \item 得出了什么；
+  \item 局限在哪；
+  \item 下一步是什么。
+\end{enumerate}
+
+%% ---------------- 参考文献 ----------------
+\vspace{1.5em}
+\section*{参考文献}
+
+\begin{list}{}{\leftmargin=2em\itemindent=-2em\itemsep=0.35em}
+\small
+
+\item 作者. 文献标题[J]. 期刊名, 年份, 卷(期): 起止页码.
+
+\item 作者. 书名[M]. 出版地: 出版社, 年份.
+
+\item Author A, Author B. Paper Title[C]//\textit{Proceedings of Conference}. Year: pages.
+
+\end{list}
+
+\end{document}
